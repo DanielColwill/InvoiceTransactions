@@ -7,11 +7,12 @@
     - these cases were not saved to the database
   - if some other validation failed like the size of the transactions list doesn't match that of the variable totalTransactionNumber, the DTO could be built and was saved to database, using a **validity** flag as true/false if the object is valid.
     - these requests are apart of /invoice/{id}/status
+      
 ### How I tested
 - unit tested parts I had problem with
   - dates
   - validation, could ensure that class returned appropriate error messages.
-  - the service
+  - the service, could test what's coming in and what i'm saving to database.
 
 - i used a python script to pull our the data matched by IDs given in the csvs.
   - from there, i had a set of invalid and valid test data
@@ -19,7 +20,7 @@
   - this was my 'integration test'
 
 ### What I'd do next time
-- given time constraint I reluctantly spent more time on getting it working rather than doing typical TDD style of work. I'd typically have more test and write them contiugously as I go.
+- Follow more of a typical TDD style of work, writing the tests as I'm writing the implementation. I'd typically have more tests and write them contiguously as I go.
 - post a screen recording
 
 ### What you might need to run
