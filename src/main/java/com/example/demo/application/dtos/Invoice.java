@@ -1,13 +1,14 @@
 package com.example.demo.application.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Builder
@@ -15,6 +16,8 @@ import java.util.List;
 @Data
 public class Invoice {
     private int id;
+    @NotNull(message = "Invoice number cannot be null")
+    @Min(value = 0, message = "Invoice number must be a positive integer")
     private int invoiceNumber;
     private double grossAmount;
     private double gstAmount;

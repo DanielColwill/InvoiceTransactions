@@ -1,11 +1,16 @@
 package com.example.demo.application.transformer;
 
 import com.example.demo.application.dtos.Invoice;
+import com.example.demo.application.dtos.InvoiceRequest;
 import com.example.demo.application.dtos.Transaction;
+import com.example.demo.application.dtos.TransactionRequest;
 import com.example.demo.infrastructure.entity.InvoiceEntity;
 import com.example.demo.infrastructure.entity.TransactionEntity;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -94,5 +99,39 @@ public class InvoiceConverter {
                 .totalNumTrxn(invoice.getTotalNumTrxn())
                 .transactionList(convertTransactionDtosToEntities(invoice.getTransactionList()))
                 .build();
+    }
+
+    public Invoice requestToDto(InvoiceRequest invoiceRequest) {
+        return Invoice.builder()
+                .id(Integer.parseInt(invoiceRequest.getId()))
+                .invoiceNumber(Integer.parseInt(invoiceRequest.getInvoiceNumber()))
+                .grossAmount(Double.parseDouble(invoiceRequest.getGrossAmount()))
+                .gstAmount(Double.parseDouble(invoiceRequest.getGstAmount()))
+                .netAmount(Double.parseDouble(invoiceRequest.getNetAmount()))
+                .receiptDate(LocalDateTime.parse(invoiceRequest.getReceiptDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")))
+                .paymentDueDate(LocalDateTime.parse(invoiceRequest.getPaymentDueDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")))
+                .totalNumTrxn(Integer.parseInt(invoiceRequest.getTotalNumTrxn()))
+                .transactionList(requestToDto(invoiceRequest.getTransactionList()))
+                .build();
+    }
+
+    private List<Transaction> requestToDto(List<TransactionRequest> transactionRequests) {
+        List<Transaction> transactions = new ArrayList<>();
+        for (TransactionRequest transactionRequest : transactionRequests) {
+            Transaction transaction = Transaction.builder()
+                    .id(Integer.parseInt(transactionRequest.getId()))
+                    .dateReceived(LocalDateTime.parse(transactionRequest.getDateReceived(),DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")))
+                    .transactionDate(LocalDateTime.parse(transactionRequest.getTransactionDate(),DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")))
+                    .invoiceId(Integer.parseInt(transactionRequest.getInvoiceId()))
+                    .invoiceNumber(Integer.parseInt(transactionRequest.getInvoiceNumber()))
+                    .billingPeriodStart(LocalDateTime.parse(transactionRequest.getBillingPeriodStart(),DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")))
+                    .billingPeriodEnd(LocalDateTime.parse(transactionRequest.getBillingPeriodEnd(),DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")))
+                    .netTransactionAmount(Double.parseDouble(transactionRequest.getNetTransactionAmount()))
+                    .gstAmount(Double.parseDouble(transactionRequest.getGstAmount()))
+                    .build();
+
+            transactions.add(transaction);
+        }
+        return transactions;
     }
 }
