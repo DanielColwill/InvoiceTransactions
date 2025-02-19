@@ -2,10 +2,10 @@
 - Followed DDD patterns to pass requests to create DTOs, and then create an entity to put in database.
 - Used H2 database to be able to post valid invoices into the database and return the object to client.
   - utils folder has a valid invoice to use. 
-- Validated the request before I tried making an object. 
+- Validated the request before I tried making an object - **validity** field 
   - if a string was passed in where a int should be, a type mismatch would occur and you would not be able to make the DTO. 
-    - these cases were not saved to the database
-  - if some other validation failed like the size of the transactions list doesn't match that of the variable totalTransactionNumber, the DTO could be built and was saved to database, using a **validity** flag as true/false if the object is valid.
+    - I have instead made an DTO with empty details out of its ID and validity state.
+  - if some other validation failed like the size of the transactions list doesn't match that of the variable totalTransactionNumber, the DTO could be built, but I again have just saved an Invoice with no other details outside of ID and validity.
     - these requests are apart of /invoice/{id}/status
       
 ### How I tested
