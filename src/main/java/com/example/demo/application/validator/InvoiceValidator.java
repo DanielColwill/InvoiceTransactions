@@ -19,9 +19,6 @@ public class InvoiceValidator {
     private TransactionValidator transactionValidator;
     public List<String> validateRequest(InvoiceRequest invoiceRequest) {
         List<String> errorMessages = new ArrayList<>();
-
-        log.info(invoiceRequest.toString());
-
         try {
             Integer.parseInt(invoiceRequest.getId());
         } catch (NumberFormatException e) {
@@ -80,7 +77,6 @@ public class InvoiceValidator {
             errorMessages.add("Total number of transactions must be zero or greater.");
         }
 
-        // Validate transactionList
         if (invoiceRequest.getTransactionList() != null) {
             for (TransactionRequest transaction : invoiceRequest.getTransactionList()) {
                 errorMessages.addAll(transactionValidator.validateTransaction(transaction));

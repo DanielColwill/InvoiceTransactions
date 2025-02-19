@@ -10,10 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,7 +28,24 @@ public class RequestController {
         return invoiceService.getInvoices();
     }
 
+    @GetMapping("/invoice/{id}")
+    public ResponseEntity<Invoice> getInvoiceById(@PathVariable("id") int id) {
+        Invoice invoice = invoiceService.getInvoiceById(id);
+        if (invoice == null) {
+            log.warn("Invoice not found for that ID");
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(invoice);
+    }
 
+    @GetMapping("/invoice/{id}/status")
+    public ResponseEntity<Boolean> getInvoiceStatus(@PathVariable("id") int id) {
+        Invoice invoice = invoiceService.getInvoiceById(id);
+        if (invoice == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(invoice.isValidity());
+    }
 
     @PostMapping("/invoice")
     public ResponseEntity<?> createInvoice(@RequestBody InvoiceRequest invoiceRequest) {
@@ -42,5 +56,6 @@ public class RequestController {
         Invoice savedInvoice = invoiceService.createInvoice(invoiceConverter.requestToDto(invoiceRequest));
         return new ResponseEntity<>(savedInvoice, HttpStatus.CREATED);
     }
+
 
 }

@@ -47,4 +47,7 @@ public class InvoiceEntity {
 
     @OneToMany(mappedBy = "invoiceId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<TransactionEntity> transactionList;
+
+    @Column(name = "validity", nullable = false)
+    private boolean validity;
 }

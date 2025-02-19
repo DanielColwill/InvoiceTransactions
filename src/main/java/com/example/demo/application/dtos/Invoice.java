@@ -28,11 +28,13 @@ public class Invoice {
     private LocalDateTime paymentDueDate;
     private int totalNumTrxn;
     private List<Transaction> transactionList;
+    private boolean validity;
 
     @Builder
     private Invoice(int id, int invoiceNumber, double grossAmount, double gstAmount,
                     double netAmount, LocalDateTime receiptDate, LocalDateTime paymentDueDate,
-                    int totalNumTrxn, List<Transaction> transactionList) {
+                    int totalNumTrxn, List<Transaction> transactionList, boolean validity) {
+        this.validity = true;
         if (transactionList == null) {
             transactionList = new ArrayList<>();
         }
@@ -42,9 +44,11 @@ public class Invoice {
         if (!transactionList.isEmpty() && transactionList.size() != totalNumTrxn) {
             log.warn("Total number of transaction lines doesn't match totalNumTrxn " +
                     "transactionsListSize: {}  totalNumTrxn: {}", transactionList.size(), totalNumTrxn);
+            this.validity = false;
         }
         if (grossAmount != transactionsListGrossAmount) {
             log.warn("Invoice gross amount doesn't match summed gross amount of transactionList");
+            this.validity = false;
         }
 
         this.id = id;

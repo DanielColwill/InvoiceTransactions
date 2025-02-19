@@ -45,4 +45,5 @@ public class TransactionEntity {
 
     @Column(name = "gst_amount", nullable = false)
     private double gstAmount;
+
 }

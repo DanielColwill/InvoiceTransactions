@@ -72,7 +72,7 @@ class InvoiceServiceTest extends Specification {
         }
     }
 
-    def "should create an invoice with transactions"() {
+    def "createInvoice"() {
         given:
         def invoice = Invoice.builder()
                 .id(31550)

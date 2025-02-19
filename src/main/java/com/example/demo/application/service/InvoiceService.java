@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -24,7 +25,6 @@ public class InvoiceService {
         return invoiceConverter.convertToDtoList(invoiceRepository.findAll());
     }
 
-    @Transactional
     public Invoice createInvoice(Invoice invoice) {
         if (invoiceRepository.existsById(invoice.getId())) {
             throw new IllegalArgumentException("Invoice with ID " + invoice.getId() + " already exists.");
@@ -39,4 +39,11 @@ public class InvoiceService {
         return invoiceConverter.convertToDto(savedInvoice);
     }
 
+    public Invoice getInvoiceById(int id) {
+        Optional<InvoiceEntity> invoiceOptional = invoiceRepository.findById(id);
+        if (invoiceOptional.isEmpty()) {
+            return null;
+        }
+        return invoiceConverter.convertToDto(invoiceOptional.get());
+    }
 }
