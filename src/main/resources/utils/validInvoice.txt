@@ -1,0 +1,56 @@
+{
+        "id": 31550,
+        "invoiceNumber": "588008565",
+        "grossAmount": 50.08,
+        "gstAmount": 4.56,
+        "netAmount": 45.52,
+        "receiptDate": "2007-12-12 18:30:52.000",
+        "paymentDueDate": "2006-04-28 00:00:00.000",
+        "totalNumTrxn": 4,
+        "transactionList": [
+            {
+                "id": 728441,
+                "dateReceived": "2007-12-12 00:00:00.000",
+                "transactionDate": "2006-03-17 00:00:00.000",
+                "invoiceId": 31550,
+                "invoiceNumber": "588008565",
+                "billingPeriodStart": "2006-01-01 00:00:00.000",
+                "billingPeriodEnd": "2006-03-17 00:00:00.000",
+                "netTransactionAmount": 32.0,
+                "gstAmount": 3.2
+            },
+            {
+                "id": 728435,
+                "dateReceived": "2007-12-12 00:00:00.000",
+                "transactionDate": "2006-03-17 00:00:00.000",
+                "invoiceId": 31550,
+                "invoiceNumber": "588008565",
+                "billingPeriodStart": "2005-12-14 00:00:00.000",
+                "billingPeriodEnd": "2005-12-31 00:00:00.000",
+                "netTransactionAmount": 8.39,
+                "gstAmount": 0.84
+            },
+            {
+                "id": 728438,
+                "dateReceived": "2007-12-12 00:00:00.000",
+                "transactionDate": "2006-03-17 00:00:00.000",
+                "invoiceId": 31550,
+                "invoiceNumber": "588008565",
+                "billingPeriodStart": "2006-01-01 00:00:00.000",
+                "billingPeriodEnd": "2006-03-17 00:00:00.000",
+                "netTransactionAmount": 4.06,
+                "gstAmount": 0.41
+            },
+            {
+                "id": 728432,
+                "dateReceived": "2007-12-12 00:00:00.000",
+                "transactionDate": "2006-03-17 00:00:00.000",
+                "invoiceId": 31550,
+                "invoiceNumber": "588008565",
+                "billingPeriodStart": "2005-12-14 00:00:00.000",
+                "billingPeriodEnd": "2005-12-31 00:00:00.000",
+                "netTransactionAmount": 1.07,
+                "gstAmount": 0.07
+            }
+        ]
+    }

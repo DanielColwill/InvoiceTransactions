@@ -1,0 +1,34 @@
+    {
+        "id": 31729,
+        "invoiceNumber": "972009982",
+        "grossAmount": 53.75,
+        "gstAmount": 4.89,
+        "netAmount": 48.86,
+        "receiptDate": "2007-12-12 18:30:55.000",
+        "paymentDueDate": "2006-04-28 00:00:00.000",
+        "totalNumTrxn": 3,
+        "transactionList": [
+            {
+                "id": 726245,
+                "dateReceived": "2007-12-12 00:00:00.000",
+                "transactionDate": "2006-03-17 00:00:00.000",
+                "invoiceId": 31729,
+                "invoiceNumber": "972009982",
+                "billingPeriodStart": "2006-02-14 00:00:00.000",
+                "billingPeriodEnd": "2006-03-15 00:00:00.000",
+                "netTransactionAmount": 7.79,
+                "gstAmount": 0.78
+            },
+            {
+                "id": 726248,
+                "dateReceived": "2007-12-12 00:00:00.000",
+                "transactionDate": "2006-03-17 00:00:00.000",
+                "invoiceId": 31729,
+                "invoiceNumber": "972009982",
+                "billingPeriodStart": "2006-02-14 00:00:00.000",
+                "billingPeriodEnd": "2006-03-15 00:00:00.000",
+                "netTransactionAmount": 38.28,
+                "gstAmount": 3.83
+            }
+        ]
+    }

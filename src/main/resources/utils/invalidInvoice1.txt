@@ -1,0 +1,34 @@
+{
+        "id": 31558,
+        "invoiceNumber": "893018131C",
+        "grossAmount": -27.32,
+        "gstAmount": -2.49,
+        "netAmount": -24.83,
+        "receiptDate": "2007-12-12 18:30:52.000",
+        "paymentDueDate": "2006-04-28 00:00:00.000",
+        "totalNumTrxn": 2,
+        "transactionList": [
+            {
+                "id": 725740,
+                "dateReceived": "2007-12-12 00:00:00.000",
+                "transactionDate": "2006-03-16 00:00:00.000",
+                "invoiceId": 31558,
+                "invoiceNumber": "893018131C",
+                "billingPeriodStart": "2005-07-27 00:00:00.000",
+                "billingPeriodEnd": "2005-09-12 00:00:00.000",
+                "netTransactionAmount": -2.47,
+                "gstAmount": -0.25
+            },
+            {
+                "id": 725742,
+                "dateReceived": "2007-12-12 00:00:00.000",
+                "transactionDate": "2006-03-16 00:00:00.000",
+                "invoiceId": 31558,
+                "invoiceNumber": "893018131D",
+                "billingPeriodStart": "2005-07-27 00:00:00.000",
+                "billingPeriodEnd": "2005-09-12 00:00:00.000",
+                "netTransactionAmount": -22.36,
+                "gstAmount": -2.24
+            }
+        ]
+    }
