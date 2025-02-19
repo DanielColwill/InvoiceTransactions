@@ -49,11 +49,16 @@ public class RequestController {
 
     @PostMapping("/invoice")
     public ResponseEntity<?> createInvoice(@RequestBody InvoiceRequest invoiceRequest) {
-        List<String> validationErrors = invoiceValidator.validateRequest(invoiceRequest);
-        if (!validationErrors.isEmpty()) {
-            return new ResponseEntity<>(validationErrors, HttpStatus.BAD_REQUEST);
+        if (!invoiceValidator.isValidRequest(invoiceRequest)) {
+            log.warn("invalid request, saving");
+            Invoice invalidInvoice = Invoice.builder()
+                    .id(Integer.parseInt(invoiceRequest.getId())) // assuming IDs are ints
+                    .validity(false)
+                    .build();
+            invoiceService.createInvoice(invalidInvoice);
+            return new ResponseEntity<>(invalidInvoice, HttpStatus.BAD_REQUEST);
         }
-        Invoice savedInvoice = invoiceService.createInvoice(invoiceConverter.requestToDto(invoiceRequest));
+        Invoice savedInvoice = invoiceService.createInvoice(invoiceConverter.validRequestToDto(invoiceRequest));
         return new ResponseEntity<>(savedInvoice, HttpStatus.CREATED);
     }
 

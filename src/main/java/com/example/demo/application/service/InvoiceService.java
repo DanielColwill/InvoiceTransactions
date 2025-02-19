@@ -25,19 +25,19 @@ public class InvoiceService {
         return invoiceConverter.convertToDtoList(invoiceRepository.findAll());
     }
 
-    public Invoice createInvoice(Invoice invoice) {
-        if (invoiceRepository.existsById(invoice.getId())) {
-            throw new IllegalArgumentException("Invoice with ID " + invoice.getId() + " already exists.");
+        public Invoice createInvoice(Invoice invoice) {
+            if (invoiceRepository.existsById(invoice.getId())) {
+                throw new IllegalArgumentException("Invoice with ID " + invoice.getId() + " already exists.");
+            }
+
+            InvoiceEntity invoiceEntity = invoiceConverter.convertToEntity(invoice);
+            log.info("Saving InvoiceEntity: {}", invoiceEntity);
+
+            InvoiceEntity savedInvoice = invoiceRepository.save(invoiceEntity);
+            log.info("Saved InvoiceEntity: {}", savedInvoice);
+
+            return invoiceConverter.convertToDto(savedInvoice);
         }
-
-        InvoiceEntity invoiceEntity = invoiceConverter.convertToEntity(invoice);
-        log.info("Saving InvoiceEntity: {}", invoiceEntity);
-
-        InvoiceEntity savedInvoice = invoiceRepository.save(invoiceEntity);
-        log.info("Saved InvoiceEntity: {}", savedInvoice);
-
-        return invoiceConverter.convertToDto(savedInvoice);
-    }
 
     public Invoice getInvoiceById(int id) {
         Optional<InvoiceEntity> invoiceOptional = invoiceRepository.findById(id);

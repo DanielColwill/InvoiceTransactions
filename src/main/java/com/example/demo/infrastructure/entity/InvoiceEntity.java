@@ -24,25 +24,25 @@ public class InvoiceEntity {
     @Id
     private int id;
 
-    @Column(name = "invoice_number", nullable = false)
+    @Column(name = "invoice_number")
     private int invoiceNumber;
 
-    @Column(name = "gross_amount", nullable = false)
+    @Column(name = "gross_amount")
     private double grossAmount;
 
-    @Column(name = "gst_amount", nullable = false)
+    @Column(name = "gst_amount")
     private double gstAmount;
 
-    @Column(name = "net_amount", nullable = false)
+    @Column(name = "net_amount")
     private double netAmount;
 
-    @Column(name = "receipt_date", nullable = false)
+    @Column(name = "receipt_date")
     private LocalDateTime receiptDate;
 
-    @Column(name = "payment_due_date", nullable = false)
+    @Column(name = "payment_due_date")
     private LocalDateTime paymentDueDate;
 
-    @Column(name = "total_num_trxn", nullable = false)
+    @Column(name = "total_num_trxn")
     private int totalNumTrxn;
 
     @OneToMany(mappedBy = "invoiceId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

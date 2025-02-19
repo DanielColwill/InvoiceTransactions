@@ -22,28 +22,28 @@ public class TransactionEntity {
     @Id
     private int id;
 
-    @Column(name = "date_received", nullable = false)
+    @Column(name = "date_received")
     private LocalDateTime dateReceived;
 
-    @Column(name = "transaction_date", nullable = false)
+    @Column(name = "transaction_date")
     private LocalDateTime transactionDate;
 
-    @Column(name = "invoice_id", nullable = false)
+    @Column(name = "invoice_id")
     private int invoiceId;
 
-    @Column(name = "invoice_number", nullable = false)
+    @Column(name = "invoice_number")
     private int invoiceNumber;
 
-    @Column(name = "billing_period_start", nullable = false)
+    @Column(name = "billing_period_start")
     private LocalDateTime billingPeriodStart;
 
-    @Column(name = "billing_period_end", nullable = false)
+    @Column(name = "billing_period_end")
     private LocalDateTime billingPeriodEnd;
 
-    @Column(name = "net_transaction_amount", nullable = false)
+    @Column(name = "net_transaction_amount")
     private double netTransactionAmount;
 
-    @Column(name = "gst_amount", nullable = false)
+    @Column(name = "gst_amount")
     private double gstAmount;
 
 }

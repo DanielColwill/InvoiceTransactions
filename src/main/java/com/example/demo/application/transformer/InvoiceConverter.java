@@ -27,6 +27,7 @@ public class InvoiceConverter {
                 .paymentDueDate(entity.getPaymentDueDate())
                 .totalNumTrxn(entity.getTotalNumTrxn())
                 .transactionList(convertTransactionEntitiesToDtos(entity.getTransactionList()))
+                .validity(entity.isValidity())
                 .build();
     }
 
@@ -41,6 +42,7 @@ public class InvoiceConverter {
                 .paymentDueDate(dto.getPaymentDueDate())
                 .totalNumTrxn(dto.getTotalNumTrxn())
                 .transactionList(convertTransactionDtosToEntities(dto.getTransactionList()))
+                .validity(dto.isValidity())
                 .build();
     }
 
@@ -86,7 +88,6 @@ public class InvoiceConverter {
                 .build();
     }
 
-
     public InvoiceEntity convertTransactionToEntity(Invoice invoice) {
         return InvoiceEntity.builder()
                 .id(invoice.getId())
@@ -101,7 +102,7 @@ public class InvoiceConverter {
                 .build();
     }
 
-    public Invoice requestToDto(InvoiceRequest invoiceRequest) {
+    public Invoice validRequestToDto(InvoiceRequest invoiceRequest) {
         return Invoice.builder()
                 .id(Integer.parseInt(invoiceRequest.getId()))
                 .invoiceNumber(Integer.parseInt(invoiceRequest.getInvoiceNumber()))
@@ -111,11 +112,12 @@ public class InvoiceConverter {
                 .receiptDate(LocalDateTime.parse(invoiceRequest.getReceiptDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")))
                 .paymentDueDate(LocalDateTime.parse(invoiceRequest.getPaymentDueDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")))
                 .totalNumTrxn(Integer.parseInt(invoiceRequest.getTotalNumTrxn()))
-                .transactionList(requestToDto(invoiceRequest.getTransactionList()))
+                .transactionList(validRequestToDto(invoiceRequest.getTransactionList()))
+                .validity(true)
                 .build();
     }
 
-    private List<Transaction> requestToDto(List<TransactionRequest> transactionRequests) {
+    private List<Transaction> validRequestToDto(List<TransactionRequest> transactionRequests) {
         List<Transaction> transactions = new ArrayList<>();
         for (TransactionRequest transactionRequest : transactionRequests) {
             Transaction transaction = Transaction.builder()

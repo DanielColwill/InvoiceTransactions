@@ -19,8 +19,11 @@
   - could use the json from these scripts as POST bodies. 
   - this was my 'integration test'
 
+- when sending postman requests, i put my application in debug mode and could step through the tracing
+  - useful for seeing the validation checks on each field
+
 ### What I'd do next time
-- Follow more of a typical TDD style of work, writing the tests as I'm writing the implementation. I'd typically have more tests and write them contiguously as I go.
+- adopt more of a TDD style of work, writing the tests as I'm writing the implementation. I'd typically have written the tests for each class in junction with the associated test as I go.
 - post a screen recording
 
 ### What you might need to run
